@@ -19,7 +19,7 @@ lazy val core = (project in file("core"))
       "dev.profunktor"             %% "console4cats"        % "0.8.1",
       "org.manatki"                %% "derevo-cats"         % "0.11.6",
       "org.manatki"                %% "derevo-cats-tagless" % "0.11.6",
-      "co.fs2"                     %% "fs2-core"            % "2.2.2",
+      "co.fs2"                     %% "fs2-core"            % "2.5.5",
       "com.olegpy"                 %% "meow-mtl-core"       % "0.4.1",
       "com.olegpy"                 %% "meow-mtl-effects"    % "0.4.1",
       "io.estatico"                %% "newtype"             % "0.4.4",
@@ -33,7 +33,14 @@ lazy val core = (project in file("core"))
 lazy val server = (project in file("server"))
   .dependsOn(core)
   .settings(
-    name := "pfp-scala-server"
+    name := "pfp-scala-server",
+    libraryDependencies ++= List(
+      "org.http4s" %% "http4s-blaze-server" % "0.21.22",
+      "org.http4s" %% "http4s-circe"        % "0.21.22",
+      "io.circe"   %% "circe-core"          % "0.13.0",
+      "io.circe"   %% "circe-generic"       % "0.13.0",
+      "io.circe"   %% "circe-refined"       % "0.13.0"
+    )
   )
 
 lazy val `pfp-scala` = (project in file("."))
