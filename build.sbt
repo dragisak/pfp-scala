@@ -1,15 +1,16 @@
-name := "pfp-scala"
+ThisBuild / organization := "com.dragishak"
 
-version := "0.1"
+ThisBuild / version := "0.1"
 
-scalaVersion := "2.13.5"
+ThisBuild / scalaVersion := "2.13.5"
 
-scalacOptions ++= List(
+ThisBuild / scalacOptions ++= List(
   "-Ymacro-annotations"
 )
 
 lazy val core = (project in file("core"))
   .settings(
+    name := "pfp-scala-core",
     libraryDependencies ++= List(
       compilerPlugin("org.typelevel"  %% "kind-projector"  % "0.11.3" cross CrossVersion.full),
       compilerPlugin("org.augustjune" %% "context-applied" % "0.1.4"),
@@ -24,12 +25,18 @@ lazy val core = (project in file("core"))
       "io.estatico"                %% "newtype"             % "0.4.4",
       "eu.timepit"                 %% "refined"             % "0.9.12",
       "com.github.julien-truffaut" %% "monocle-core"        % "2.1.0",
-      "com.github.julien-truffaut" %% "monocle-macro"       % "2.1.0"
+      "com.github.julien-truffaut" %% "monocle-macro"       % "2.1.0",
+      "org.typelevel"              %% "squants"             % "1.8.0"
     )
   )
 
 lazy val server = (project in file("server"))
   .dependsOn(core)
-
+  .settings(
+    name := "pfp-scala-server"
+  )
 lazy val `pfp-scala` = (project in file("."))
   .aggregate(server)
+  .settings(
+    name := "pfp-scala"
+  )
