@@ -1,6 +1,6 @@
 *.log
 *.swp
-target/
+target
 .idea
 .DS_Store
 .bloop
