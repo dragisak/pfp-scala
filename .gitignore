@@ -1,10 +1,7 @@
 *.log
 *.swp
-
 target/
-
 .idea
-# Mac OS Files
 .DS_Store
 .bloop
 .metals
