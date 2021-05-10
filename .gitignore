@@ -1,0 +1,14 @@
+*.log
+*.swp
+
+target/
+
+.idea
+# Mac OS Files
+.DS_Store
+.bloop
+.metals
+.bsp
+.vscode
+project/project
+project/metals.sbt
