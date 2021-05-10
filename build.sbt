@@ -35,6 +35,7 @@ lazy val server = (project in file("server"))
   .settings(
     name := "pfp-scala-server"
   )
+
 lazy val `pfp-scala` = (project in file("."))
   .aggregate(server)
   .settings(
