@@ -2,7 +2,7 @@ ThisBuild / organization := "com.dragishak"
 
 ThisBuild / version := "0.1"
 
-ThisBuild / scalaVersion := "2.13.5"
+ThisBuild / scalaVersion := "2.13.6"
 
 ThisBuild / scalacOptions ++= List(
   "-Ymacro-annotations"
