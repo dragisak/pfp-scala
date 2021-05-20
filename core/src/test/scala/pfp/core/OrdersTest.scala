@@ -1,15 +1,11 @@
 package pfp.core
 
+import cats.kernel.laws.discipline._
 import cats.{Eq, Monad}
 import org.scalacheck.Arbitrary
 import org.scalacheck.Prop.forAll
 import org.typelevel.discipline.Laws
 import squants.Money
-import cats.{Eq, Monad}
-import org.typelevel.discipline.Laws
-import cats.kernel.laws.discipline._
-import org.scalacheck.Arbitrary
-import org.scalacheck.Prop.forAll
 
 trait OrdersTest[F[_]] extends Laws {
 
@@ -24,7 +20,7 @@ trait OrdersTest[F[_]] extends Laws {
   ): RuleSet = new SimpleRuleSet(
     "Orders Laws",
     "If I create an order, I should be able to get the order" -> forAll(
-      laws.getAfterCreate(_, _, _, _) _
+      laws.getAfterCreate _
     )
   )
 

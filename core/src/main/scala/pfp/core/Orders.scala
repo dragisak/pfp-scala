@@ -3,6 +3,7 @@ package pfp.core
 import squants.Money
 
 trait Orders[F[_]] {
+
   def get(
       userId: UserId,
       orderId: OrderId
