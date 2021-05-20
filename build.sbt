@@ -2,7 +2,7 @@ ThisBuild / organization := "com.dragishak"
 
 ThisBuild / version := "0.1"
 
-ThisBuild / scalaVersion := "2.13.5"
+ThisBuild / scalaVersion := "2.13.6"
 
 ThisBuild / scalacOptions ++= List(
   "-Ymacro-annotations"
@@ -30,7 +30,7 @@ lazy val core = (project in file("core"))
   .settings(
     name := "pfp-scala-core",
     libraryDependencies ++= List(
-      compilerPlugin("org.typelevel"  %% "kind-projector"  % "0.11.3" cross CrossVersion.full),
+      compilerPlugin("org.typelevel"  %% "kind-projector"  % "0.13.0" cross CrossVersion.full),
       compilerPlugin("org.augustjune" %% "context-applied" % "0.1.4"),
       "org.typelevel"              %% "cats-core"              % versions.cats,
       "org.typelevel"              %% "cats-effect"            % versions.eff,
