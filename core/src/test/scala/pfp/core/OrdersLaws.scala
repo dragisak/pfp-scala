@@ -23,9 +23,41 @@ trait OrdersLaws[F[_]] {
     val result = for {
       orderId    <- api.create(userId, paymentId, items, total)
       maybeOrder <- api.get(userId, orderId)
-    } yield maybeOrder
+    } yield (orderId, maybeOrder)
 
-    result.map(maybeOrder => maybeOrder.isDefined) <-> M.pure(true)
+    result.map { case (orderId, maybeOrder) =>
+      val itemQuantitySummedById = items
+        .groupBy(_.item.id)
+        .map { case (id, groupedItems) =>
+          id -> Quantity(groupedItems.map(_.quantity.value).sum)
+        }
+
+      val expected = Order(
+        id = orderId,
+        pid = paymentId,
+        items = itemQuantitySummedById,
+        total = total
+      )
+
+      maybeOrder.contains(expected)
+    } <-> M.pure(true)
+  }
+
+  def findByAfterCreate(
+      userId: UserId,
+      paymentId: PaymentId,
+      items: List[CartItem],
+      total: Money
+  ): IsEq[F[Boolean]] = {
+
+    val result = for {
+      orderId <- api.create(userId, paymentId, items, total)
+      orders  <- api.findBy(userId)
+    } yield (orderId, orders)
+
+    result.map { case (orderId, orders) =>
+      orders.exists(_.id == orderId)
+    } <-> M.pure(true)
   }
 
 }

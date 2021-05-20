@@ -3,7 +3,7 @@ package pfp.core
 import squants.Money
 
 final case class Item(
-    uuid: ItemId,
+    id: ItemId,
     name: ItemName,
     description: ItemDescription,
     price: Money,
