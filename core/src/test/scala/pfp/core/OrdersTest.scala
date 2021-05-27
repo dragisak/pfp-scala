@@ -21,6 +21,9 @@ trait OrdersTest[F[_]] extends Laws {
     "Orders Laws",
     "If I create an order, I should be able to get the order" -> forAll(
       laws.getAfterCreate _
+    ),
+    "If I create an order, I should be able to find the order" -> forAll(
+      laws.findByAfterCreate _
     )
   )
 
