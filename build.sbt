@@ -14,6 +14,8 @@ val versions = new {
   val console4cats        = "0.8.1"
   val eff                 = "2.5.0"
   val fs2                 = "2.5.5"
+  val circe               = "0.14.0"
+  val http4s              = "0.21.22"
   val derevo              = "0.11.6"
   val newtype             = "0.4.4"
   val meow                = "0.4.1"
@@ -59,11 +61,11 @@ lazy val server = (project in file("server"))
   .settings(
     name := "pfp-scala-server",
     libraryDependencies ++= List(
-      "org.http4s" %% "http4s-blaze-server" % "0.21.22",
-      "org.http4s" %% "http4s-circe"        % "0.21.22",
-      "io.circe"   %% "circe-core"          % "0.13.0",
-      "io.circe"   %% "circe-generic"       % "0.13.0",
-      "io.circe"   %% "circe-refined"       % "0.13.0"
+      "org.http4s" %% "http4s-blaze-server" % versions.http4s,
+      "org.http4s" %% "http4s-circe"        % versions.http4s,
+      "io.circe"   %% "circe-core"          % versions.circe,
+      "io.circe"   %% "circe-generic"       % versions.circe,
+      "io.circe"   %% "circe-refined"       % versions.circe
     )
   )
 
